@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>javascript高级03 | 海东的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1 .函数的原型和函数的原型对象a.函数的原型是指函数的propertype属性指向的对象
+b.函数的原型对象是指函数的__proto__属性指向的对象:Function.prototype">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript高级03">
+<meta property="og:url" content="http://yoursite.com/2016/04/09/javascript高级03/index.html">
+<meta property="og:site_name" content="海东的博客">
+<meta property="og:description" content="1 .函数的原型和函数的原型对象a.函数的原型是指函数的propertype属性指向的对象
+b.函数的原型对象是指函数的__proto__属性指向的对象:Function.prototype">
+<meta property="og:updated_time" content="2017-04-05T11:40:15.171Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript高级03">
+<meta name="twitter:description" content="1 .函数的原型和函数的原型对象a.函数的原型是指函数的propertype属性指向的对象
+b.函数的原型对象是指函数的__proto__属性指向的对象:Function.prototype">
+  
+    <link rel="alternate" href="/atom.xml" title="海东的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">海东的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-javascript高级03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/09/javascript高级03/" class="article-date">
+  <time datetime="2016-04-09T12:17:39.000Z" itemprop="datePublished">2016-04-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      javascript高级03
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-函数的原型和函数的原型对象"><a href="#1-函数的原型和函数的原型对象" class="headerlink" title="1 .函数的原型和函数的原型对象"></a>1 .函数的原型和函数的原型对象</h2><p>a.函数的原型是指函数的propertype属性指向的对象</p>
+<p>b.函数的原型对象是指函数的__proto__属性指向的对象:Function.prototype</p>
+<a id="more"></a>
+<h2 id="2-Function"><a href="#2-Function" class="headerlink" title="2.Function"></a>2.Function</h2><h3 id="2-1-Function的概念说明"><a href="#2-1-Function的概念说明" class="headerlink" title="2.1 Function的概念说明"></a>2.1 Function的概念说明</h3><p>所有的函数都是Function的实例。</p>
+<p>a.因为Object也是函数，可以推导出Object是Function的实例所以Object.__proto__指向Function.prototype。</p>
+<p>b.因为Function也是函数，可以推导出Function也是Function的实例，所以Function.__proto__属性指向Function.prototype。</p>
+<h3 id="2-2-函数的创建方式"><a href="#2-2-函数的创建方式" class="headerlink" title="2.2 函数的创建方式"></a>2.2 函数的创建方式</h3><p>a.使用函数声明的方式创建，示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</div></pre></td></tr></table></figure>
+<p>b.使用函数表达式的方式创建</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div></pre></td></tr></table></figure>
+<p>c.使用Function关键字进行创建<br>Function中的最后一个参数是函数体，1个参数以上前面的参数都可以看作函数的参数，Function的参数必须是字符串</p>
+<p>无参的函数形式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f1=<span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"return 10"</span>);</div><div class="line"><span class="built_in">console</span>.log(f1());<span class="comment">//结果是10</span></div></pre></td></tr></table></figure>
+<p>有参的函数形式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f1=<span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"return a+b"</span>);</div><div class="line"><span class="built_in">console</span>.log(f1(<span class="number">5</span>,<span class="number">10</span>));<span class="comment">//结果为15</span></div></pre></td></tr></table></figure>
+<h2 id="2-3-Function的应用"><a href="#2-3-Function的应用" class="headerlink" title="2.3 Function的应用"></a>2.3 Function的应用</h2><h4 id="2-3-1-解析json字符串为json对象，"><a href="#2-3-1-解析json字符串为json对象，" class="headerlink" title="2.3.1 解析json字符串为json对象，"></a>2.3.1 解析json字符串为json对象，</h4><p>使用示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o1=<span class="string">'&#123;"name":"zs","age":18&#125;'</span>;</div><div class="line"><span class="keyword">var</span> f1=<span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"return "</span>+o1);</div><div class="line"><span class="built_in">console</span>.log(f1());</div></pre></td></tr></table></figure>
+<h4 id="2-3-2-解析代码"><a href="#2-3-2-解析代码" class="headerlink" title="2.3.2 解析代码"></a>2.3.2 解析代码</h4><p>使用示例如下：</p>
+<p>html代码部分：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">""</span> <span class="attr">cols</span>=<span class="string">"30"</span> <span class="attr">rows</span>=<span class="string">"10"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"运行代码"</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div1"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>js代码部分：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>).onclick=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> txtDom=<span class="built_in">document</span>.querySelector(<span class="string">"textarea"</span>);</div><div class="line">        <span class="keyword">var</span> txt=txtDom.value;</div><div class="line">        <span class="keyword">var</span> f1=<span class="keyword">new</span> <span class="built_in">Function</span>(txt);</div><div class="line">        f1();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="3-函数和对象的联系和区别"><a href="#3-函数和对象的联系和区别" class="headerlink" title="3.函数和对象的联系和区别"></a>3.函数和对象的联系和区别</h2><p>a.函数本质是一个对象，在浏览器端它和对象都具有__proto__属性，但函数具有propertype属性，对象没有</p>
+<p>b.函数的__proto__属性最终指向Function.prototype，对象的__proto__属性最终指向Object.Property，因为函数的原型也是一个对象，它也指向Object.Property。</p>
+<p>c.所有的函数都是Function的实例，Function本质上也是一个函数所以Function.__proto__等于Function.prototype</p>
+<h2 id="4-对象成员和静态成员"><a href="#4-对象成员和静态成员" class="headerlink" title="4.对象成员和静态成员"></a>4.对象成员和静态成员</h2><p>a.对象成员指的是对象上的属性和方法</p>
+<p>b.静态成员指的是函数自身内存上的属性</p>
+<h2 id="5-instanceof"><a href="#5-instanceof" class="headerlink" title="5.instanceof"></a>5.instanceof</h2><p>作用1：检测一个对象是否是一个函数的实例,示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.name=name;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> p1=<span class="keyword">new</span> Person(<span class="string">"zs"</span>);</div><div class="line">    <span class="keyword">var</span> arr=[<span class="number">10</span>,<span class="number">20</span>];</div><div class="line">    <span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Array</span>);<span class="comment">//结果是true</span></div><div class="line">    <span class="built_in">console</span>.log(p1 <span class="keyword">instanceof</span> Person);<span class="comment">//结果是true</span></div></pre></td></tr></table></figure>
+<p>作用2：检测一个对象的原型链中是否涉及到了另一个对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span>);<span class="comment">//结果是true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>);<span class="comment">//结果是true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Function</span> <span class="keyword">instanceof</span>  <span class="built_in">Function</span>);<span class="comment">//结果是true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>);<span class="comment">//结果是true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>);<span class="comment">//结果是true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span>);<span class="comment">//结果是true</span></div></pre></td></tr></table></figure>
+<h2 id="6-函数的静态属性"><a href="#6-函数的静态属性" class="headerlink" title="6.函数的静态属性"></a>6.函数的静态属性</h2><h3 id="6-1-name"><a href="#6-1-name" class="headerlink" title="6.1 name"></a>6.1 name</h3><p>函数的name属性用于存储函数的名字，根据不同的函数形式，name的取值也不同，共有三种情况</p>
+<p>a.声明式函数<br>声明式函数的name属性就是，name就是该函数名。</p>
+<p>b.第二种函数表达式，并且函数表达式没有名字，name属性为变量名。</p>
+<p>c.第三种函数表达式，并且函数表达式有名字，name属性为函数名，使用这种方式创建的函数只能使用变量名进行调用，想要使用函数名调用必须在函数内部。</p>
+<h3 id="6-2-形参的个数实参的个数"><a href="#6-2-形参的个数实参的个数" class="headerlink" title="6.2 形参的个数实参的个数"></a>6.2 形参的个数实参的个数</h3><p> 函数的形参个数，使用函数的length属性去获取。</p>
+<p> 函数的实参个数，在函数内部使用arguments.length属性去获取</p>
+<h3 id="6-3-caller"><a href="#6-3-caller" class="headerlink" title="6.3 caller"></a>6.3 caller</h3><p>caller属性表示当前函数在哪个函数内部调用的。</p>
+<p>若函数没有被调用，函数的caller的属性值为null;</p>
+<p>若函数在全局作用域被调用，函数的caller的属性值为null;</p>
+<p>若函数在其他函数内部被调用，函数的caller的属性值为该函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(f1.caller);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    f1();</div><div class="line">&#125;</div><div class="line">f1();<span class="comment">//输出值为null</span></div><div class="line">f2();<span class="comment">//输出值为f2函数</span></div></pre></td></tr></table></figure>
+<h3 id="6-4-伪数组"><a href="#6-4-伪数组" class="headerlink" title="6.4 伪数组"></a>6.4 伪数组</h3><p>对象具有length属性，并且有”0”,”1”,”2”这样的数字属性，可以使用for循环进行遍历，这样的对象可以被看作伪数组。</p>
+<h3 id="6-5-arguments-callee"><a href="#6-5-arguments-callee" class="headerlink" title="6.5 arguments.callee"></a>6.5 arguments.callee</h3><p>在函数内部使用arguments.callee进行函数自调用</p>
+<h2 id="7-异常捕获"><a href="#7-异常捕获" class="headerlink" title="7. 异常捕获"></a>7. 异常捕获</h2><p>try…catch<br>有时候也用于屏蔽异常，将异常信息写入日志。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/09/javascript高级03/" data-id="cj14vv4hu0004mkad51q0o0ya" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/08/javascript高级02/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">javascript高级02</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码管理工具/">代码管理工具</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/09/javascript高级03/">javascript高级03</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/08/javascript高级02/">javascript高级02</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/05/javacript高级01/">javascript高级01</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/21/git的基本使用/">git的基本使用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 海东<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
