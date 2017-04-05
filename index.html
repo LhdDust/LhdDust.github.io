@@ -48,9 +48,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -86,44 +86,15 @@
         <h2 id="1-对象创建的三种方式"><a href="#1-对象创建的三种方式" class="headerlink" title="1.对象创建的三种方式"></a>1.对象创建的三种方式</h2><h3 id="1-1-使用字面量的方式"><a href="#1-1-使用字面量的方式" class="headerlink" title="1.1 使用字面量的方式"></a>1.1 使用字面量的方式</h3><p>使用字面量创建的对象，相当于new Object()，所以字面量对象的__proto__属性指向Object.prototype,可以说字面量对象就是Object构造函数的一个实例。</p>
 <h3 id="1-2-使用构造函数的方式创建"><a href="#1-2-使用构造函数的方式创建" class="headerlink" title="1.2 使用构造函数的方式创建"></a>1.2 使用构造函数的方式创建</h3><p>使用构造函数的实例对象，该实例对象的__proto__属性指向构造函数的原型对象。</p>
 <h3 id="1-3-使用Object-create-方法创建的对象"><a href="#1-3-使用Object-create-方法创建的对象" class="headerlink" title="1.3 使用Object.create()方法创建的对象"></a>1.3 使用Object.create()方法创建的对象</h3><p>使用Object.create(parent)方法创建的对象，该对象的__proto__属性指向parent对象。</p>
-<h2 id="2-原型链"><a href="#2-原型链" class="headerlink" title="2. 原型链"></a>2. 原型链</h2><p>不同的对象之间通过__proto__属性来进行连接，可以通过这样的关系来访问他们的属性，形成的这种关系仿佛就是一个链子的结构，把这样的链子称之为原型链。</p>
-<h2 id="3-Object-defineProperty方法"><a href="#3-Object-defineProperty方法" class="headerlink" title="3. Object.defineProperty方法"></a>3. Object.defineProperty方法</h2><p>功能：给一个对象定义一个属性</p>
-<p>用法示例</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">"gender"</span>&#123;</div><div class="line">    <span class="attr">configurable</span>:<span class="literal">false</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>Object.definedProperty是在标准下提出的，也就说该方法支持现代浏览器（ie9+）。</p>
-<h3 id="3-1-configurable"><a href="#3-1-configurable" class="headerlink" title="3.1 configurable"></a>3.1 configurable</h3><p>功能：设置属性是否可被删除。</p>
-<p>值为false时，属性不可被删除，默认值为false；</p>
-<p>值为true时，属性可被删除。</p>
-<h3 id="3-2-enumerable"><a href="#3-2-enumerable" class="headerlink" title="3.2 enumerable"></a>3.2 enumerable</h3><p>功能：设置属性是否可被枚举。</p>
-<p>值为false时，属性不可被枚举，默认值为false；</p>
-<p>值为true时，属性可被枚举。</p>
-<h3 id="3-3-writable"><a href="#3-3-writable" class="headerlink" title="3.3 writable"></a>3.3 writable</h3><p>功能：设置属性是否可被赋值运算符(+= -= *= /= %= = ++ –)改变。</p>
-<p>值为false时，属性不可被赋值运算符(+= -= *= /= %= = ++ –)改变，默认值为false；</p>
-<p>值为true时，属性可被赋值运算符(+= -= *= /= %= = ++ –)改变。</p>
-<h3 id="3-4-get-set属性"><a href="#3-4-get-set属性" class="headerlink" title="3.4 get/set属性"></a>3.4 get/set属性</h3><p>功能：用于约束和设置属性</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj=&#123; &#125;;</div><div class="line"></div><div class="line">    <span class="comment">//限定了obj对象的age属性的值的范围：0-200之间</span></div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> _age;</div><div class="line">        <span class="built_in">Object</span>.defineProperty(obj,<span class="string">"age"</span>,&#123;</div><div class="line">            <span class="attr">set</span>:<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</div><div class="line">                <span class="keyword">if</span>(value&gt;=<span class="number">0</span> &amp;&amp; value&lt;=<span class="number">200</span>)&#123;</div><div class="line">                    _age=value;</div><div class="line">                &#125;</div><div class="line">            &#125;,</div><div class="line">            <span class="attr">get</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                <span class="keyword">return</span> _age===<span class="literal">undefined</span>?<span class="number">0</span>:_age;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;)()</div><div class="line"></div><div class="line">    obj.age=<span class="number">-1</span>;<span class="comment">//_age:undefined</span></div><div class="line">    <span class="built_in">console</span>.log(obj.age);<span class="comment">//0</span></div><div class="line">    obj.age=<span class="number">10</span>;<span class="comment">//_age:10</span></div><div class="line">    <span class="built_in">console</span>.log(obj.age);<span class="comment">//10</span></div></pre></td></tr></table></figure>
-<h3 id="3-5-value属性"><a href="#3-5-value属性" class="headerlink" title="3.5 value属性"></a>3.5 value属性</h3><p>功能：用于设置定义的属性的值</p>
-<h2 id="4-属性操作"><a href="#4-属性操作" class="headerlink" title="4. 属性操作"></a>4. 属性操作</h2><h3 id="4-1-属性访问"><a href="#4-1-属性访问" class="headerlink" title="4.1 属性访问"></a>4.1 属性访问</h3><p>属性访问的两种方式：</p>
-<p>a.对象名称.属性名称</p>
-<p>b.对象名称[‘属性名称’]</p>
-<h3 id="4-2-属性删除"><a href="#4-2-属性删除" class="headerlink" title="4.2 属性删除"></a>4.2 属性删除</h3><p>使用delete方法可以进行属性删除操作，具体用法 delete+属性名</p>
-<p>a.使用var定义的全局变量不可被删除，隐式全局变量可以被删除</p>
-<p>b.delete删除数组元素时，数组元素可以被删除，但数组长度不变</p>
-<h3 id="4-3-属性检测"><a href="#4-3-属性检测" class="headerlink" title="4.3 属性检测"></a>4.3 属性检测</h3><h4 id="4-3-1-in"><a href="#4-3-1-in" class="headerlink" title="4.3.1 in"></a>4.3.1 in</h4><p>功能：可以判断对象中是否包含某个属性(无论在构造函数中还是在原型对象上都可以)，存在的话返回true，使用示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.name=name;</div><div class="line">    <span class="keyword">this</span>.age=age;</div><div class="line">&#125;</div><div class="line">Person.prototype.gender=<span class="string">"男"</span>;</div><div class="line"><span class="keyword">var</span> per1=<span class="keyword">new</span> Person(<span class="string">"zs"</span>,<span class="number">18</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"name"</span> <span class="keyword">in</span> Person);<span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"gender"</span> <span class="keyword">in</span> Person.prototype);<span class="comment">//true</span></div></pre></td></tr></table></figure>
-<h4 id="4-3-2-hasOwnProperty"><a href="#4-3-2-hasOwnProperty" class="headerlink" title="4.3.2 hasOwnProperty"></a>4.3.2 hasOwnProperty</h4><p>功能：判断属性是否在构造函数上，存在返回true，示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.name=name;</div><div class="line">    <span class="keyword">this</span>.age=age;</div><div class="line">&#125;</div><div class="line">Person.prototype.gender=<span class="string">"男"</span>;</div><div class="line"><span class="keyword">var</span> per1=<span class="keyword">new</span> Person(<span class="string">"zs"</span>,<span class="number">18</span>);</div><div class="line"><span class="built_in">console</span>.log(per1.hasOwnProperty(<span class="string">"name"</span>));</div></pre></td></tr></table></figure>
-<h4 id="4-3-3写一个方法判断某个属性是否在某个对象的原型上，在的话返回true，否则返回false"><a href="#4-3-3写一个方法判断某个属性是否在某个对象的原型上，在的话返回true，否则返回false" class="headerlink" title="4.3.3写一个方法判断某个属性是否在某个对象的原型上，在的话返回true，否则返回false"></a>4.3.3写一个方法判断某个属性是否在某个对象的原型上，在的话返回true，否则返回false</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">check</span>(<span class="params">attr,obj</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(attr <span class="keyword">in</span> obj &amp;&amp; !obj.hasOwnProperty(attr))&#123;<span class="comment">//不在构造函数中 可以确保在原型上</span></div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<h2 id="5-isPrototypeOf方法"><a href="#5-isPrototypeOf方法" class="headerlink" title="5.isPrototypeOf方法"></a>5.isPrototypeOf方法</h2><p>判断当前对象是否是参数的原型对象，只要参数直接或间接继承当前对象，那么返回值都是true。用法示例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.prototype.isPrototypeOf(<span class="built_in">Array</span>.prototype);<span class="comment">//结果是true</span></div></pre></td></tr></table></figure>
-<h2 id="6-propertyIsEnumerable方法"><a href="#6-propertyIsEnumerable方法" class="headerlink" title="6. propertyIsEnumerable方法"></a>6. propertyIsEnumerable方法</h2><p>判断属性是否可枚举（是否可被for…in..循环遍历）并且是自身的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> n1=&#123;<span class="attr">name</span>:<span class="string">"zs"</span>&#125;;</div><div class="line"><span class="built_in">Object</span>.defineProperty(n1,<span class="string">"age"</span>,&#123;</div><div class="line">    <span class="attr">Enumerable</span>:<span class="literal">false</span>,</div><div class="line">    <span class="attr">value</span>:<span class="number">10</span></div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(n1.propertyIsEnumerable(<span class="string">"name"</span>));<span class="comment">//结果是true</span></div><div class="line"><span class="built_in">console</span>.log(n1.propertyIsEnumerable(<span class="string">"age"</span>));<span class="comment">//结果是false</span></div></pre></td></tr></table></figure>
-<h2 id="7-for…in…"><a href="#7-for…in…" class="headerlink" title="7. for…in…"></a>7. for…in…</h2><p>for in的功能是遍历出对象本身及对象的原型链中可被枚举的属性。</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2016/04/08/javascript高级02/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/08/javascript高级02/" data-id="cj14vgro40002roadhzbb93gk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/08/javascript高级02/" data-id="cj14vgro40002roadhzbb93gk" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -159,95 +130,15 @@
 <p><strong>b.变量的类型是由存储的数据的类型决定的。</strong></p>
 <p><strong>c.使用var关键字定义的变量都具有变量声明提升的特性。</strong></p>
 <p><strong>d.隐式全局变量没有变量声明提升的特性；给window对象添加一个属性会产生全局变量。</strong></p>
-<h2 id="2-数据类型"><a href="#2-数据类型" class="headerlink" title="2.数据类型"></a>2.数据类型</h2><table>
-<thead>
-<tr>
-<th style="text-align:center"><strong>基本数据类型/值类型</strong></th>
-<th style="text-align:center"><strong>复杂数据类型/引用类型</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>Undefined,Null,Number,String,Boolean</strong></td>
-<td style="text-align:center"><strong>对象</strong></td>
-</tr>
-</tbody>
-</table>
-<p><strong>a.基本类型/值类型</strong></p>
-<p>变量的传递过程：传递的是变量本身的值；由于两个变量是存储的数据在两个不同内存区域，所以当一个变量发生变化时，不会影响另一个变量。示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=<span class="number">10</span>;</div><div class="line"><span class="keyword">var</span> b=a;</div><div class="line">b=<span class="number">20</span>;</div><div class="line"><span class="built_in">console</span>.log(a);<span class="comment">//a的结果是10</span></div></pre></td></tr></table></figure>
-<p><strong>b.复杂类型/引用类型</strong></p>
-<p>变量的传递过程：传递的是变量的引用；由于两个变量指向同一个内存区域，当改变其中一个变量，另一个变量也会随之改变。示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=&#123;<span class="attr">age</span>:<span class="number">18</span>&#125;;</div><div class="line"><span class="keyword">var</span> b=a;</div><div class="line">b.age=<span class="number">19</span>;</div><div class="line"><span class="built_in">console</span>.log(a.age);<span class="comment">//结果是19</span></div></pre></td></tr></table></figure>
-<h2 id="3-数据类型判断"><a href="#3-数据类型判断" class="headerlink" title="3.数据类型判断"></a>3.数据类型判断</h2><p><strong>a.typeof的使用</strong></p>
-<p>typeof通常用于检测简单数据类型；</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="number">1</span>);<span class="comment">//"number"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="string">"abc"</span>);<span class="comment">//"string"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">true</span>);<span class="comment">//"boolean"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>);<span class="comment">//"object"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">undefined</span>);<span class="comment">//"undefined"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> []);<span class="comment">//"object"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> &#123;&#125;);<span class="comment">//"object"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> /abc/);<span class="comment">//"object"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="keyword">new</span> <span class="built_in">Date</span>());<span class="comment">//"object"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="built_in">Math</span>);<span class="comment">//"object"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;);<span class="comment">//"function"</span></div></pre></td></tr></table></figure>
-<p>也可用于检测复杂数据类型，但使用具备一定的限制和很麻烦</p>
-<p><strong>注：如果一个变量未定义或不存在，它的typeof结果是undefined。</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> a=b=c=<span class="number">10</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//函数未调用变量没有产生</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a);<span class="comment">//undefined</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> b);<span class="comment">//undefined</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> c);<span class="comment">//undefined</span></div><div class="line">f1();<span class="comment">//函数调用后产生三个变量局部变量a，b和c两个隐式全局变量</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a);<span class="comment">//undefined</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> b);<span class="comment">//number</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> c);<span class="comment">//number</span></div></pre></td></tr></table></figure>
-<p>使用typeof判断一个变量是否是对象</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isObject</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">typeof</span> obj==<span class="string">"object"</span>&amp;&amp;obj!=<span class="literal">null</span>)||(<span class="keyword">typeof</span> obj==<span class="string">"function"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>b.instanceof的使用</strong></p>
-<p>检测复杂数据类型使用instanceof。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log([] <span class="keyword">instanceof</span> <span class="built_in">Array</span>);<span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(&#123;&#125; <span class="keyword">instanceof</span> <span class="built_in">Object</span>);<span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125; <span class="keyword">instanceof</span> <span class="built_in">Object</span>);<span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="regexp">/\d+/</span> <span class="keyword">instanceof</span> <span class="built_in">RegExp</span>);</div></pre></td></tr></table></figure>
-<h2 id="4-类型转换"><a href="#4-类型转换" class="headerlink" title="4.类型转换"></a>4.类型转换</h2><h3 id="4-1-简单数据类型之间的转换"><a href="#4-1-简单数据类型之间的转换" class="headerlink" title="4.1 简单数据类型之间的转换"></a>4.1 简单数据类型之间的转换</h3><h4 id="4-1-1-Number类型"><a href="#4-1-1-Number类型" class="headerlink" title="4.1.1 Number类型"></a>4.1.1 Number类型</h4><p>将一个简单数据类型的变量转换为Number类型一共有三个方法：</p>
-<p>Number方法是将变量转换成整型或浮点型;</p>
-<p>parseInt方法是将变量转换成整型;</p>
-<p>Number与parseInt方法的根本区别在于：Number方法遵循严格转换，parseInt方法转换字符串并不严格，示例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"123abc"</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(str));<span class="comment">//NaN</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(str));<span class="comment">//123</span></div></pre></td></tr></table></figure>
-<p>parseFloat方法是将变量转换成浮点数;</p>
-<h4 id="4-1-2-String类型"><a href="#4-1-2-String类型" class="headerlink" title="4.1.2 String类型"></a>4.1.2 String类型</h4><p>将一个简单数据类型的变量转换为String类型有两个方法:</p>
-<p>toString方法和String方法</p>
-<p>null和undefined不支持toString方法，可以使用String方法进行类型转换。</p>
-<h4 id="4-1-3-Boolean类型"><a href="#4-1-3-Boolean类型" class="headerlink" title="4.1.3 Boolean类型"></a>4.1.3 Boolean类型</h4><p>将一个简单数据类型的变量转换为Boolean类型有两个方法：</p>
-<p>取反操作（!）和Boolean方法</p>
-<p><strong>除””,+-0,null,undefined,NaN,false其他变量转换为boolean类型都为true</strong></p>
-<h3 id="4-2-复杂类型转换成简单类型"><a href="#4-2-复杂类型转换成简单类型" class="headerlink" title="4.2 复杂类型转换成简单类型"></a>4.2 复杂类型转换成简单类型</h3><h4 id="4-2-1-转换为布尔类型"><a href="#4-2-1-转换为布尔类型" class="headerlink" title="4.2.1 转换为布尔类型"></a>4.2.1 转换为布尔类型</h4><p>所有的复杂类型转换为布尔类型都为true</p>
-<h4 id="4-2-2-转为字符串类型"><a href="#4-2-2-转为字符串类型" class="headerlink" title="4.2.2 转为字符串类型"></a>4.2.2 转为字符串类型</h4><p><img src="/assets/对象类型转换为字符串类型.png" alt=""></p>
-<p><strong>对象转换为字符串的结果是：”[object Object]“</strong></p>
-<h4 id="4-2-3-转为数字类型"><a href="#4-2-3-转为数字类型" class="headerlink" title="4.2.3 转为数字类型"></a>4.2.3 转为数字类型</h4><p><img src="/assets/对象类型转换数字类型.PNG" alt=""></p>
-<h2 id="5-比较运算符"><a href="#5-比较运算符" class="headerlink" title="5.比较运算符"></a>5.比较运算符</h2><p>a.使用==进行比较运算时</p>
-<p><img src="/assets/相等不相等.PNG" alt=""></p>
-<p>如果运算符两边的类型相同，运算符两边的值直接进行比较；复杂数据类型相等的条件是它们指向同一个内存区。<br>如果运算符两边的类型不相同，运算符两边的值会进行隐式的类型转换先转换为字符串类型，再转换为数字类型，经过两次转换转换之后再进行比较。</p>
-<p>==的比较进行的是字符串比较或者数字比较</p>
-<p>进行null比较的时候不遵循这个规则</p>
-<p><strong>null==undefined这个除外，这个是比较特殊的情况。</strong></p>
-<p>b.使用===进行比较运算时<br>首先比较两边的类型是否相等，再比较运算符两边的值是否相等；当类型和值相等的时候，表达式两边的值才相等。</p>
-<h2 id="6-字符串的indexOf方法与search方法"><a href="#6-字符串的indexOf方法与search方法" class="headerlink" title="6.字符串的indexOf方法与search方法"></a>6.字符串的indexOf方法与search方法</h2><p>indexOf方法的参数是字符串，search方法的参数是正则表达式。</p>
-<h2 id="7-数组的栈方法和队列方法"><a href="#7-数组的栈方法和队列方法" class="headerlink" title="7.数组的栈方法和队列方法"></a>7.数组的栈方法和队列方法</h2><h3 id="a-栈方法"><a href="#a-栈方法" class="headerlink" title="a.栈方法"></a>a.栈方法</h3><p>push方法和pop方法</p>
-<p>push方法可以接收任意数量的参数，把它们逐个添加到数组末尾，并返回修改后数组的长度。<br>pop方法可以则从数组末尾移除最后一项，减少数组的长度，然后返回移除的项。</p>
-<h3 id="b-队列方法"><a href="#b-队列方法" class="headerlink" title="b.队列方法"></a>b.队列方法</h3><p>shift方法和unshift方法</p>
-<p>unshift方法可以接收任意数量的参数，把他们逐个添加数组的前端，并返回修改后的数组的长度。<br>shift方法可以从数组的前端移除首项，减少数组的长度，然后返回移除的项。</p>
-<h3 id="8-函数的三种方式区别"><a href="#8-函数的三种方式区别" class="headerlink" title="8.函数的三种方式区别"></a>8.函数的三种方式区别</h3><p>a.声明式函数，这样的函数可以进行函数声明提升<br>function f1(){}</p>
-<p>b.函数表达式，这样的函数不具备函数声明提升<br>var f1=function(){}</p>
-<p>c.自执行函数<br>(function(){})()<br>!function(){}()<br>+function(){}()</p>
-<h3 id="9-函数提升和变量提升"><a href="#9-函数提升和变量提升" class="headerlink" title="9.函数提升和变量提升"></a>9.函数提升和变量提升</h3><p>函数提升的优先级高于变量提升的优先级，使用示例如下：</p>
-<p>预解析之前的代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a);<span class="comment">//结果是function</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> a=<span class="number">10</span>;</div></pre></td></tr></table></figure>
-<p>预解析之后的代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a;</div><div class="line">a=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;<span class="comment">//function a()&#123;&#125;</span></div><div class="line"><span class="keyword">var</span> a;<span class="comment">//js中不执行重复代码</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a);</div><div class="line">a=<span class="number">10</span>;</div></pre></td></tr></table></figure>
-<h2 id="10-js中的-和"><a href="#10-js中的-和" class="headerlink" title="10.js中的{}和()"></a>10.js中的{}和()</h2><p>{}具有两重含义，一是用于对象字面量，二是作为语句存在<br>()中间只能是表达式，{}中间是语句</p>
-<h2 id="11-replace方法"><a href="#11-replace方法" class="headerlink" title="11.replace方法"></a>11.replace方法</h2><p>js中replace方法的参数存在两种形式</p>
-<p>第一种形式，参数一要被替换的字符串，参数二替换的字符串，使用示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=ab-cd-ef;</div><div class="line">str=str.replace(<span class="string">"-"</span>,<span class="string">""</span>);</div></pre></td></tr></table></figure>
-<p>第二种形式，参数一正则表达式，参数二回调函数，回调函数中有两个参数，参数1是使用正则匹配到的字符串，参数二是要替换的字符串。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/-(\w)/g</span>;</div><div class="line"><span class="keyword">var</span> str=<span class="string">"ab-cd-ef"</span>;</div><div class="line">str=str.replace(reg,<span class="function"><span class="keyword">function</span>(<span class="params">sValue,rValue</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> rValue.toUpperCase();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h2 id="12-返回值"><a href="#12-返回值" class="headerlink" title="12. 返回值"></a>12. 返回值</h2><p>var num=3; 返回值为undefined</p>
-<p>num=num+3;返回值为6</p>
-<h2 id="13-json的序列化与反序列化"><a href="#13-json的序列化与反序列化" class="headerlink" title="13. json的序列化与反序列化"></a>13. json的序列化与反序列化</h2><p>JSON.stringify </p>
-<p>作用：把json对象转换成字符串（json序列化）</p>
-<p>JSON.parse</p>
-<p>作用：把json标准格式字符串转换成对象 （json反序列化）</p>
-<h2 id="14-sessionStorage与localStorage"><a href="#14-sessionStorage与localStorage" class="headerlink" title="14. sessionStorage与localStorage"></a>14. sessionStorage与localStorage</h2><p>window.localStorage 永久存储 本地存储</p>
-<p>window.sessionStorage 会话存储 浏览器关闭数据就消失</p>
-<p>getItems</p>
-<p>setItem</p>
-<p>removeItem</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2016/04/05/javacript高级01/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/05/javacript高级01/" data-id="cj14vgro10001roadvnkoayx0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/05/javacript高级01/" data-id="cj14vgro10001roadvnkoayx0" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -290,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/21/git的基本使用/" data-id="cj14vgrny0000road2ed0mglb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/21/git的基本使用/" data-id="cj14vgrny0000road2ed0mglb" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -325,7 +216,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
@@ -354,7 +245,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 海东<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
