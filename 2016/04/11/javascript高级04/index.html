@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>javascript高级04 | 海东的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.js执行阶段a.词法分析：将script标签中的这一段文本，进行分割操作。
+b.语法分析： 只关注变量声明和函数声明部分
+c.代码执行阶段：剔除声明部分，代码按照从上到下从左到右的顺序开始执行
+注意：a和b两个阶段统称为预解析阶段。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript高级04">
+<meta property="og:url" content="http://yoursite.com/2016/04/11/javascript高级04/index.html">
+<meta property="og:site_name" content="海东的博客">
+<meta property="og:description" content="1.js执行阶段a.词法分析：将script标签中的这一段文本，进行分割操作。
+b.语法分析： 只关注变量声明和函数声明部分
+c.代码执行阶段：剔除声明部分，代码按照从上到下从左到右的顺序开始执行
+注意：a和b两个阶段统称为预解析阶段。">
+<meta property="og:updated_time" content="2017-04-05T11:50:45.743Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript高级04">
+<meta name="twitter:description" content="1.js执行阶段a.词法分析：将script标签中的这一段文本，进行分割操作。
+b.语法分析： 只关注变量声明和函数声明部分
+c.代码执行阶段：剔除声明部分，代码按照从上到下从左到右的顺序开始执行
+注意：a和b两个阶段统称为预解析阶段。">
+  
+    <link rel="alternate" href="/atom.xml" title="海东的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">海东的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-javascript高级04" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/11/javascript高级04/" class="article-date">
+  <time datetime="2016-04-11T10:45:42.000Z" itemprop="datePublished">2016-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      javascript高级04
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-js执行阶段"><a href="#1-js执行阶段" class="headerlink" title="1.js执行阶段"></a>1.js执行阶段</h2><p>a.词法分析：将script标签中的这一段文本，进行分割操作。</p>
+<p>b.语法分析： 只关注变量声明和函数声明部分</p>
+<p>c.代码执行阶段：剔除声明部分，代码按照从上到下从左到右的顺序开始执行</p>
+<p>注意：a和b两个阶段统称为预解析阶段。</p>
+<a id="more"></a>
+<h2 id="2-预解析"><a href="#2-预解析" class="headerlink" title="2.预解析"></a>2.预解析</h2><p>预解析涉及到两个概念：变量声明提升和函数声明提升。</p>
+<h3 id="2-1-变量提升"><a href="#2-1-变量提升" class="headerlink" title="2.1 变量提升"></a>2.1 变量提升</h3><p>变量声明提前，进行赋值部分的位置不会发生变化，示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//解析前</span></div><div class="line"><span class="built_in">console</span>.log(b);</div><div class="line"><span class="keyword">var</span> b=<span class="number">10</span>;</div><div class="line"><span class="comment">//解析后：</span></div><div class="line"><span class="keyword">var</span> b;</div><div class="line"><span class="built_in">console</span>.log(b);<span class="comment">//所以输出结果是"undefined"</span></div><div class="line">b=<span class="number">10</span>;</div></pre></td></tr></table></figure>
+<h3 id="2-2-函数声明提升"><a href="#2-2-函数声明提升" class="headerlink" title="2.2 函数声明提升"></a>2.2 函数声明提升</h3><p>函数声明提升，是指整个函数体进行提升，而一个函数体相当于一个函数表达式，这里相当于变量提升后给它进行了一个函数赋值。示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//解析前</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> fun1);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> fun1=<span class="number">10</span>;</div><div class="line"><span class="comment">//解析后</span></div><div class="line"><span class="keyword">var</span> fun1;</div><div class="line">fun1=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;<span class="comment">//赋值</span></div><div class="line"><span class="comment">//var fun1;重复声明不执行</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> fun1);<span class="comment">//输出结果是"function"</span></div><div class="line">fun1=<span class="number">10</span>;</div></pre></td></tr></table></figure>
+<h2 id="3-解释型语言与编译型语言"><a href="#3-解释型语言与编译型语言" class="headerlink" title="3. 解释型语言与编译型语言"></a>3. 解释型语言与编译型语言</h2><h3 id="3-1-解释型语言"><a href="#3-1-解释型语言" class="headerlink" title="3.1 解释型语言"></a>3.1 解释型语言</h3><p><strong>特点：先解释分析再执行代码</strong></p>
+<p><strong>常见解释型语言：js，php，sql</strong></p>
+<h3 id="3-2-编译型语言"><a href="#3-2-编译型语言" class="headerlink" title="3.2 编译型语言"></a>3.2 编译型语言</h3><p><strong>特点：进行编译，编译成中间代码或者二进制文件，最终执行中间代码。</strong></p>
+<p><strong>常见语言的编译过程：</strong></p>
+<p><strong>java:  .java——&gt;.class——-&gt;最终执行.class文件</strong></p>
+<p><strong>c#：.cs——–&gt;.cs————-&gt;最终执行.cs文件</strong></p>
+<p><strong>常见的编译型语言：java c# c c++</strong></p>
+<h2 id="4-作用域"><a href="#4-作用域" class="headerlink" title="4. 作用域"></a>4. 作用域</h2><p>作用域决定了变量的使用范围</p>
+<h3 id="4-1-js中没有块级作用域"><a href="#4-1-js中没有块级作用域" class="headerlink" title="4.1 js中没有块级作用域"></a>4.1 js中没有块级作用域</h3><p>js中是不存在块级作用域的示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> b=<span class="number">10</span>;</div><div class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</div><div class="line"><span class="keyword">var</span> b=<span class="string">"str"</span>;</div><div class="line"><span class="built_in">console</span>.log(b);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(b);</div><div class="line"><span class="comment">//两次输出借否都是str</span></div></pre></td></tr></table></figure>
+<p>以上示例若存在块级作用域，第二次打印的结果应该是10。</p>
+<h3 id="4-2-js中只有函数才能产生作用域"><a href="#4-2-js中只有函数才能产生作用域" class="headerlink" title="4.2 js中只有函数才能产生作用域"></a>4.2 js中只有函数才能产生作用域</h3><p>根据函数的范围，决定了函数内变量的使用范围</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> a=<span class="number">10</span>;</div><div class="line">    <span class="built_in">console</span>.log(a);</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> b=<span class="number">20</span>;</div><div class="line">        <span class="built_in">console</span>.log(a);<span class="comment">//a在这里可以访问</span></div><div class="line">        <span class="built_in">console</span>.log(b);</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">fun3</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> c=<span class="number">30</span>;</div><div class="line">            <span class="built_in">console</span>.log(a);<span class="comment">//a在这里可以访问</span></div><div class="line">            <span class="built_in">console</span>.log(b);<span class="comment">//b在这里可以访问</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">fun1();<span class="comment">//执行fun1</span></div><div class="line">fun1()();<span class="comment">//执行fun1,fun2</span></div><div class="line">fun1()()();执行fun1,fun2,fun3</div></pre></td></tr></table></figure>
+<h2 id="5-闭包"><a href="#5-闭包" class="headerlink" title="5. 闭包"></a>5. 闭包</h2><h3 id="5-1-概念"><a href="#5-1-概念" class="headerlink" title="5.1 概念"></a>5.1 概念</h3><p><strong>广义上：闭包就是封闭包裹的意思，而函数内部就是一个作用域，所有的函数都是一个封闭包裹的空间，所有任何函数都可以看作是闭包。</strong></p>
+<p><strong>狭义上：已知函数A函数B，函数A包裹函数B，在函数B内部可以访问函数A中声明的变量，我们把函数B称之为闭包函数</strong>。</p>
+<h3 id="5-2-解决的问题"><a href="#5-2-解决的问题" class="headerlink" title="5.2 解决的问题"></a>5.2 解决的问题</h3><p>函数内访问变量的值，该变量并不是函数本身的，而且希望该变量的值不会发生变化，使用闭包函数将声明变量的值只执行一次。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//不使用闭包函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">random</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> r=<span class="built_in">Math</span>.random();</div><div class="line">    <span class="keyword">return</span> r;</div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</div><div class="line">    <span class="built_in">console</span>.log(random());<span class="comment">//输出10个不一样的随机数</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//使用闭包函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">random1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> r=<span class="built_in">Math</span>.random();</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> r;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> fn=random1();</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)&#123;</div><div class="line">    <span class="comment">//要执行的循环体</span></div><div class="line">    <span class="built_in">console</span>.log(fn());<span class="comment">//输出10个相同的随机数</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="5-3-闭包的使用"><a href="#5-3-闭包的使用" class="headerlink" title="5.3 闭包的使用"></a>5.3 闭包的使用</h3><h4 id="5-3-1-模块化"><a href="#5-3-1-模块化" class="headerlink" title="5.3.1 模块化"></a>5.3.1 模块化</h4><p>概念：具有完成独立功能的单元，这个单元是密闭的，不可被外界随意污染。</p>
+<h4 id="5-3-2-闭包实现模块化"><a href="#5-3-2-闭包实现模块化" class="headerlink" title="5.3.2 闭包实现模块化"></a>5.3.2 闭包实现模块化</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ktvManager=(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> leastPrice=<span class="number">1000</span>;</div><div class="line">    <span class="keyword">var</span> totalPrice=<span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">cost</span>:<span class="function"><span class="keyword">function</span>(<span class="params">price</span>)</span>&#123;</div><div class="line">            totalPrice+=price;</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">pay</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">if</span>(totalPrice&gt;=<span class="number">1000</span>)&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"买单成功"</span>);</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"买单失败，你还需要消费"</span>+(leastPrice-totalPrice)+<span class="string">"元"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<h4 id="5-3-3-缓存的使用"><a href="#5-3-3-缓存的使用" class="headerlink" title="5.3.3 缓存的使用"></a>5.3.3 缓存的使用</h4><p>对于一些经常会使用的数据(这些数据通常都是要通过后台接口访问的)，就应该把这样的数据存储起来。</p>
+<p>例如：用户登录成功，可以获取到用户的id(用户的特定标识)、名字相关信息，尤其是id</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> 需要修改用户信息：必须要提供用户id</div><div class="line"></div><div class="line">查询订单：也必须要知道用户的id</div></pre></td></tr></table></figure>
+<p>所以用户的id需要使用缓存进行存储。</p>
+<p>h5中的缓存技术localStorage/sessionStorage</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">loacalStorage.setItem(<span class="string">"userId"</span>,<span class="string">"001"</span>);</div></pre></td></tr></table></figure>
+<h4 id="5-3-4-利用闭包实现缓存"><a href="#5-3-4-利用闭包实现缓存" class="headerlink" title="5.3.4 利用闭包实现缓存"></a>5.3.4 利用闭包实现缓存</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">var</span> CacheManager=(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> caches=&#123;&#125;;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">setItem</span>:<span class="function"><span class="keyword">function</span>(<span class="params">key,value</span>)</span>&#123;</div><div class="line">            <span class="comment">//caches["h5"]</span></div><div class="line">            caches[key]=<span class="built_in">String</span>(value);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">getItem</span>:<span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</div><div class="line">            <span class="keyword">return</span> caches[key];</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">removeItem</span>:<span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</div><div class="line">                        <span class="comment">//如果想要删除removeItem方法：delete this.removeItem</span></div><div class="line">            <span class="keyword">delete</span> caches[key];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<h2 id="6-函数表达式"><a href="#6-函数表达式" class="headerlink" title="6. 函数表达式"></a>6. 函数表达式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f1=<span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(f1===<span class="built_in">arguments</span>.callee);</div><div class="line">    <span class="built_in">console</span>.log(f2===<span class="built_in">arguments</span>.callee);</div><div class="line">&#125;</div><div class="line">f1();<span class="comment">//true,true</span></div><div class="line">f2();<span class="comment">//f2 is not defined</span></div></pre></td></tr></table></figure>
+<p>f1既可以在函数内部访问也可以在函数外部访问，f2只可以在函数内部访问。</p>
+<h2 id="7-extend方法与-fn-extend方法"><a href="#7-extend方法与-fn-extend方法" class="headerlink" title="7. \$.extend方法与$.fn.extend方法"></a>7. \$.extend方法与$.fn.extend方法</h2><p>$.extend方法</p>
+<p>功能1：如果方法的参数只有一个，就会将参数中的属性和方法拷贝到$函数中</p>
+<p>功能2：如果方法的参数超过1个，会将第二个参数及其后面的所有参数中的属性和方法分别拷贝到第一个参数中</p>
+<p>$.fn.extend方法</p>
+<p>功能1：如果方法的参数只有一个，就会将参数中的属性和方法拷贝到调用该方法的对象中</p>
+<p>功能2：如果方法的参数超过1个，会将第二个参数及其后面的所有参数中的属性和方法分别拷贝到第一个参数</p>
+<p>对于直接和DOM操作相关的方法（css show hide attr removeAttr append appnendTo prepend prependTo fadeIn fadeOut animate），调用$.fn.extend进行方法扩展；</p>
+<p>若方法和dom不是直接挂钩的方法，使用$.extend方法进行扩展。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/11/javascript高级04/" data-id="cj14wx03k0005t0adqw2o26le" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/09/javascript高级03/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">javascript高级03</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码管理工具/">代码管理工具</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/11/javascript高级04/">javascript高级04</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/09/javascript高级03/">javascript高级03</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/08/javascript高级02/">javascript高级02</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/05/javacript高级01/">javascript高级01</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/21/git的基本使用/">git的基本使用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 海东<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
