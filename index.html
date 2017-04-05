@@ -48,9 +48,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -123,7 +123,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/08/javascript高级02/" data-id="cj14vgro40002roadhzbb93gk" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/04/08/javascript高级02/" data-id="cj14vgro40002roadhzbb93gk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -247,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/05/javacript高级01/" data-id="cj14vgro10001roadvnkoayx0" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/04/05/javacript高级01/" data-id="cj14vgro10001roadvnkoayx0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -282,101 +282,15 @@
         <h2 id="1-版本控制软件"><a href="#1-版本控制软件" class="headerlink" title="1.版本控制软件"></a>1.版本控制软件</h2><p>Git与SVN</p>
 <p>GIT主要管理前端代码，SVN管理后台代码。</p>
 <p>作用：管理代码。</p>
-<h2 id="2-shell"><a href="#2-shell" class="headerlink" title="2 shell"></a>2 shell</h2><p>shell是一种媒介，用于操作系统的核心(cpu)，是对二进制操作的一系列的封装。</p>
-<h2 id="3-shell分类"><a href="#3-shell分类" class="headerlink" title="3 shell分类"></a>3 shell分类</h2><p>图形界面shell：windows</p>
-<p>命令行shell: cmd.exe Windows PowerShell Boune shell(sh)  Boune Again shell(bash)</p>
-<h2 id="4-bash"><a href="#4-bash" class="headerlink" title="4 bash"></a>4 bash</h2><h3 id="4-1-简单命令"><a href="#4-1-简单命令" class="headerlink" title="4.1 简单命令"></a>4.1 简单命令</h3><p>命令格式：命令 -[参数] 文件夹名</p>
-<p>命令：</p>
-<p>pwd 查看当前目录的全名称</p>
-<p>cd 切换目录</p>
-<p>cd 目录名 当前目录下一级目录</p>
-<p>cd ..切换到当前目录上一级目录</p>
-<p>cd 子目录名 按tab键会出现智能提示，如果当前目录下只有一个子目录会自动补全，如果存在多个匹配，需输入多几个字母完成匹配</p>
-<p>ls 获取当前目录下的子项</p>
-<p>ls -l   以列表的形式展示了子项的详细信息</p>
-<p>ls -a 在l的基础上增加两个信息</p>
-<p>.  表示当前目录</p>
-<p>.. 表示当前目录的上一级</p>
-<p>ls -al 相当于 -a和-l的合集</p>
-<p>ls -list  相当于 -l</p>
-<p>ls可以查看任意文件夹的内容，比如以列表的形式展示 ls -l 文件夹名 或 ls -l ./文件夹名</p>
-<h3 id="4-2-文件夹命令"><a href="#4-2-文件夹命令" class="headerlink" title="4.2 文件夹命令"></a>4.2 文件夹命令</h3><p>创建文件夹mkdir 文件夹名</p>
-<p>删除空目录 rmdir 文件名</p>
-<h3 id="4-3-文件操作命令"><a href="#4-3-文件操作命令" class="headerlink" title="4.3 文件操作命令"></a>4.3 文件操作命令</h3><p>在当前目录下创建文件</p>
-<p>touch 文件名，可以用来创建多个 touch 文件名1 文件名2 文件3</p>
-<p>删除当前目录下的文件</p>
-<p>rm 文件名，可以用来删除多个文件 rm 文件名1 文件名2 文件名3，也可以用来删除整个文件夹的内容及文件（包括空文件夹）rm -rf(递归)，这种删除是无法回归的。</p>
-<p>移动文件</p>
-<p>mv 文件名  文件夹/新的文件名（不写的话和源文件的名字一样）</p>
-<p>文件重命名</p>
-<p>mv 目录/源文件名 目录/新的源文件名</p>
-<p>cp 目录/原文件名  目录/新文件名</p>
-<p>文件复制</p>
-<p>cp  目录/文件名  目录/文件名</p>
-<p>文件重定向  &gt;</p>
-<p>将输入结果转到指定文件内。</p>
-<p>$ ls -l  &gt;  文件名  可以指定目录输出;可以在文本中追加输出内容。</p>
-<p>如果希望将显示结果显示在指定的txt中，就可以使用重定向实现。</p>
-<p>覆盖源文件的内容</p>
-<p>追加内容输出</p>
-<p>cat 查看文件内容</p>
-<h2 id="5-vi编辑器"><a href="#5-vi编辑器" class="headerlink" title="5 vi编辑器"></a>5 vi编辑器</h2><p>如window的文本，linux的vi</p>
-<p>在bash中进入vi编辑器，通过:q退出，如果在vi输入了内容，需要输入:wq，保存并退出</p>
-<p>使用i/a进入输入模式，通过esc退出；vi 文件名 打开指定文件，使用vi进行编辑,不保存直接推出:!q</p>
-<p>通过shift+:进入底层模式。</p>
-<h2 id="6-版本控制"><a href="#6-版本控制" class="headerlink" title="6 版本控制"></a>6 版本控制</h2><p>作用：用来管理代码， 他具有以下优势：</p>
-<p>对于个人开发来说：</p>
-<p>代码优化，代码更新；没有版本控制软件修改了哪些代码可能自己都不清楚了；</p>
-<p>有了版本控制之后，可以将某个文件的新内容和旧内容进行对比，对比后就可以知道这两段代码之间有哪些区别。</p>
-<p>对于团队开发来说：</p>
-<p>一个项目肯定是由若干个开发人员一起开发的，不同人员开发的不同代码可能会发生冲突，使用版本控制软件可以实现协同开发，代码共享。</p>
-<p>版本控制软件分类：可以完成个人开发的目的，但是无法进行团队开发</p>
-<p>1.本地版本控制软件</p>
-<p>2.集中式版本控制软件：SVN</p>
-<p>既适用于个人开发也适用于团队开发</p>
-<p>原理：首先每一个开发者要分配一个账号（账号是由svn的服务器管理员发放的），开发者利用账号开发，把功能开发好了之后，将功能提交到服务器中。</p>
-<p>3.分布式版本控制软件: Git</p>
-<p>原理：给每一个开发者分配一个账号，开发者完成某个开发任务的时候，可能首先将代码无数次的提交到本地仓库，最终完成某个开发任务的时候，将本地仓库中的代码一起提交到服务器中。</p>
-<h2 id="7-Git本地"><a href="#7-Git本地" class="headerlink" title="7 Git本地"></a>7 Git本地</h2><p>组成：工作区和本地仓库，工作区就是编写代码的地方；本地仓库又分为暂存区和主仓库。</p>
-<p>代码首先会放入暂存区，在暂存区的代码可以随时修改；修改完成后，会将代码直接提交到主仓库，主仓库的代码也可以修改，修改时代码会放入暂存区，随意进行修改代码。我们可以看到主仓库的代码修改，看不到暂存区的代码。</p>
-<p>Git文件的集中状态：</p>
-<p>在git管理的目录中，创建文件和修改文件或者删除文件时都不会被记录，要想文件被记录必须通过某个命令</p>
-<p>未标记：未追踪（凭空创造，没有被git管理）</p>
-<p>已提交：该文件已经被git管理起来，接下来对该文件进行相关操作就可以实现版本控制。</p>
-<p>已修改：某个文件已经提交到暂存区了，如果对该文件进行修改，那么文件的状态就是已修改。</p>
-<p>已暂存：某个文件已经被提交到暂存区了。</p>
-<h2 id="8-Git配置"><a href="#8-Git配置" class="headerlink" title="8.Git配置"></a>8.Git配置</h2><p>git config –global user.name “自己的名字”con  设置全局所有仓库的名字</p>
-<p>git config user.name “名字” 设置自己仓库的名字</p>
-<p>git config –global user.email “自己的邮箱”</p>
-<p>git init <strong>对仓库进行初始化</strong></p>
-<p>git status<strong> 查看仓库中所有文件的状态，它会忽略到空目录，如果当前目录中有未追踪的内容，它也会提示相关目录</strong></p>
-<p>Untracked files <strong>未追踪的文件</strong></p>
-<p>Change to  be Commited  <strong>即将要被提交到主仓库的文件，也就是文件在暂存区。</strong></p>
-<p>modified <strong>表示这是一个已修改的文件</strong></p>
-<p>git add 文件名 <strong>将未追踪的文件放入暂存区或也可以已修改的文件放入暂存区</strong></p>
-<p>git add * <strong>将某个目录的全部内容放入暂存区</strong></p>
-<p>git commit <strong>将暂存区的内容放入仓库</strong></p>
-<p>git commit -m <strong>备注信息  如果不输入备注信息，会提示一个vi编辑器，每一个提交到本地仓库必须输入备注信息</strong></p>
-<p>git log <strong>查看提交历史  </strong></p>
-<p><strong>显示结果有：</strong></p>
-<p><strong>某一次提交的唯一标记</strong></p>
-<p><strong>提交人的信息</strong></p>
-<p><strong>提交的日期</strong></p>
-<p>git log –oneline <strong>查单提交历史简略操作</strong></p>
-<p>git reflog <strong>查看历史记录，包括每一次提交的信息，每一次版本回滚的操作</strong></p>
-<p>撤销操作：</p>
-<p>git checkout 文件名：<strong>将一个文件已经放入到暂存区了，如果希望从暂存区会恢复修改前的状态，可以使用git checkout –文件名</strong></p>
-<p>将文件从暂存区中取出并替换本地文件</p>
-<p>git rest HEAD文件名：<strong>将已经添加到暂存区的文件，并且文件没有被修改过，可以从暂存区中取出</strong></p>
-<p>将文件从暂存区中取出，但是并不用</p>
-<p>恢复到以前提交的版本：<strong>从本地仓库中取出文件替换工作目录的文件</strong></p>
-<p>git reset –hard 版本号（版本号可以取前几位）<strong>回退之后，在该版本之后提交的版本就失效了，不可逆。</strong></p>
-<p>git config  –list 查看配置信息</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2016/03/21/git的基本使用/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/21/git的基本使用/" data-id="cj14vgrny0000road2ed0mglb" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/03/21/git的基本使用/" data-id="cj14vgrny0000road2ed0mglb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -411,7 +325,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -440,7 +354,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 海东<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
